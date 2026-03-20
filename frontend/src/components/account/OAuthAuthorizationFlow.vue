@@ -1,17 +1,17 @@
 <template>
   <div
-    class="rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-700 dark:bg-blue-900/30"
+    class="rounded-lg border border-cyan-200 bg-cyan-50 p-4 dark:border-cyan-700 dark:bg-cyan-900/30"
   >
       <div class="flex items-start gap-4">
-      <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-blue-500">
+      <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-cyan-500">
         <Icon name="link" size="md" class="text-white" />
       </div>
       <div class="flex-1">
-        <h4 class="mb-3 font-semibold text-blue-900 dark:text-blue-200">{{ oauthTitle }}</h4>
+        <h4 class="mb-3 font-semibold text-cyan-900 dark:text-cyan-200">{{ oauthTitle }}</h4>
 
         <!-- Auth Method Selection -->
         <div v-if="showMethodSelection" class="mb-4">
-          <label class="mb-2 block text-sm font-medium text-blue-800 dark:text-blue-300">
+          <label class="mb-2 block text-sm font-medium text-cyan-800 dark:text-cyan-300">
             {{ methodLabel }}
           </label>
           <div class="flex flex-wrap gap-4">
@@ -20,9 +20,9 @@
                 v-model="inputMethod"
                 type="radio"
                 value="manual"
-                class="text-blue-600 focus:ring-blue-500"
+                class="text-cyan-600 focus:ring-cyan-500"
               />
-              <span class="text-sm text-blue-900 dark:text-blue-200">{{
+              <span class="text-sm text-cyan-900 dark:text-cyan-200">{{
                 t('admin.accounts.oauth.manualAuth')
               }}</span>
             </label>
@@ -31,9 +31,9 @@
                 v-model="inputMethod"
                 type="radio"
                 value="cookie"
-                class="text-blue-600 focus:ring-blue-500"
+                class="text-cyan-600 focus:ring-cyan-500"
               />
-              <span class="text-sm text-blue-900 dark:text-blue-200">{{
+              <span class="text-sm text-cyan-900 dark:text-cyan-200">{{
                 t('admin.accounts.oauth.cookieAutoAuth')
               }}</span>
             </label>
@@ -42,9 +42,9 @@
                 v-model="inputMethod"
                 type="radio"
                 value="refresh_token"
-                class="text-blue-600 focus:ring-blue-500"
+                class="text-cyan-600 focus:ring-cyan-500"
               />
-              <span class="text-sm text-blue-900 dark:text-blue-200">{{
+              <span class="text-sm text-cyan-900 dark:text-cyan-200">{{
                 t(getOAuthKey('refreshTokenAuth'))
               }}</span>
             </label>
@@ -53,9 +53,9 @@
                 v-model="inputMethod"
                 type="radio"
                 value="session_token"
-                class="text-blue-600 focus:ring-blue-500"
+                class="text-cyan-600 focus:ring-cyan-500"
               />
-              <span class="text-sm text-blue-900 dark:text-blue-200">{{
+              <span class="text-sm text-cyan-900 dark:text-cyan-200">{{
                 t(getOAuthKey('sessionTokenAuth'))
               }}</span>
             </label>
@@ -64,9 +64,9 @@
                 v-model="inputMethod"
                 type="radio"
                 value="access_token"
-                class="text-blue-600 focus:ring-blue-500"
+                class="text-cyan-600 focus:ring-cyan-500"
               />
-              <span class="text-sm text-blue-900 dark:text-blue-200">{{
+              <span class="text-sm text-cyan-900 dark:text-cyan-200">{{
                 t('admin.accounts.oauth.openai.accessTokenAuth', '手动输入 AT')
               }}</span>
             </label>
@@ -76,9 +76,9 @@
         <!-- Refresh Token Input (OpenAI / Antigravity) -->
         <div v-if="inputMethod === 'refresh_token'" class="space-y-4">
           <div
-            class="rounded-lg border border-blue-300 bg-white/80 p-4 dark:border-blue-600 dark:bg-gray-800/80"
+            class="rounded-lg border border-cyan-300 bg-white/80 p-4 dark:border-cyan-600 dark:bg-gray-800/80"
           >
-            <p class="mb-3 text-sm text-blue-700 dark:text-blue-300">
+            <p class="mb-3 text-sm text-cyan-700 dark:text-cyan-300">
               {{ t(getOAuthKey('refreshTokenDesc')) }}
             </p>
 
@@ -87,11 +87,11 @@
               <label
                 class="mb-2 flex items-center gap-2 text-sm font-semibold text-gray-700 dark:text-gray-300"
               >
-                <Icon name="key" size="sm" class="text-blue-500" />
+                <Icon name="key" size="sm" class="text-cyan-500" />
                 Refresh Token
                 <span
                   v-if="parsedRefreshTokenCount > 1"
-                  class="rounded-full bg-blue-500 px-2 py-0.5 text-xs text-white"
+                  class="rounded-full bg-cyan-500 px-2 py-0.5 text-xs text-white"
                 >
                   {{ t('admin.accounts.oauth.keysCount', { count: parsedRefreshTokenCount }) }}
                 </span>
@@ -104,7 +104,7 @@
               ></textarea>
               <p
                 v-if="parsedRefreshTokenCount > 1"
-                class="mt-1 text-xs text-blue-600 dark:text-blue-400"
+                class="mt-1 text-xs text-cyan-600 dark:text-cyan-400"
               >
                 {{ t('admin.accounts.oauth.batchCreateAccounts', { count: parsedRefreshTokenCount }) }}
               </p>
@@ -160,9 +160,9 @@
         <!-- Session Token Input (Sora) -->
         <div v-if="inputMethod === 'session_token'" class="space-y-4">
           <div
-            class="rounded-lg border border-blue-300 bg-white/80 p-4 dark:border-blue-600 dark:bg-gray-800/80"
+            class="rounded-lg border border-cyan-300 bg-white/80 p-4 dark:border-cyan-600 dark:bg-gray-800/80"
           >
-            <p class="mb-3 text-sm text-blue-700 dark:text-blue-300">
+            <p class="mb-3 text-sm text-cyan-700 dark:text-cyan-300">
               {{ t(getOAuthKey('sessionTokenDesc')) }}
             </p>
 
@@ -170,11 +170,11 @@
               <label
                 class="mb-2 flex items-center gap-2 text-sm font-semibold text-gray-700 dark:text-gray-300"
               >
-                <Icon name="key" size="sm" class="text-blue-500" />
+                <Icon name="key" size="sm" class="text-cyan-500" />
                 {{ t(getOAuthKey('sessionTokenRawLabel')) }}
                 <span
                   v-if="parsedSessionTokenCount > 1"
-                  class="rounded-full bg-blue-500 px-2 py-0.5 text-xs text-white"
+                  class="rounded-full bg-cyan-500 px-2 py-0.5 text-xs text-white"
                 >
                   {{ t('admin.accounts.oauth.keysCount', { count: parsedSessionTokenCount }) }}
                 </span>
@@ -185,7 +185,7 @@
                 class="input w-full resize-y font-mono text-sm"
                 :placeholder="t(getOAuthKey('sessionTokenRawPlaceholder'))"
               ></textarea>
-              <p class="mt-1 text-xs text-blue-600 dark:text-blue-400">
+              <p class="mt-1 text-xs text-cyan-600 dark:text-cyan-400">
                 {{ t(getOAuthKey('sessionTokenRawHint')) }}
               </p>
               <div class="mt-2 flex flex-wrap items-center gap-2">
@@ -204,7 +204,7 @@
                   {{ t(getOAuthKey('copySessionUrl')) }}
                 </button>
               </div>
-              <p class="mt-1 break-all text-xs text-blue-600 dark:text-blue-400">
+              <p class="mt-1 break-all text-xs text-cyan-600 dark:text-cyan-400">
                 {{ soraSessionUrl }}
               </p>
               <p class="mt-1 text-xs text-amber-600 dark:text-amber-400">
@@ -212,7 +212,7 @@
               </p>
               <p
                 v-if="parsedSessionTokenCount > 1"
-                class="mt-1 text-xs text-blue-600 dark:text-blue-400"
+                class="mt-1 text-xs text-cyan-600 dark:text-cyan-400"
               >
                 {{ t('admin.accounts.oauth.batchCreateAccounts', { count: parsedSessionTokenCount }) }}
               </p>
@@ -314,9 +314,9 @@
         <!-- Access Token Input (Sora) -->
         <div v-if="inputMethod === 'access_token'" class="space-y-4">
           <div
-            class="rounded-lg border border-blue-300 bg-white/80 p-4 dark:border-blue-600 dark:bg-gray-800/80"
+            class="rounded-lg border border-cyan-300 bg-white/80 p-4 dark:border-cyan-600 dark:bg-gray-800/80"
           >
-            <p class="mb-3 text-sm text-blue-700 dark:text-blue-300">
+            <p class="mb-3 text-sm text-cyan-700 dark:text-cyan-300">
               {{ t('admin.accounts.oauth.openai.accessTokenDesc', '直接粘贴 Access Token 创建账号，无需 OAuth 授权流程。支持批量导入（每行一个）。') }}
             </p>
 
@@ -324,11 +324,11 @@
               <label
                 class="mb-2 flex items-center gap-2 text-sm font-semibold text-gray-700 dark:text-gray-300"
               >
-                <Icon name="key" size="sm" class="text-blue-500" />
+                <Icon name="key" size="sm" class="text-cyan-500" />
                 Access Token
                 <span
                   v-if="parsedAccessTokenCount > 1"
-                  class="rounded-full bg-blue-500 px-2 py-0.5 text-xs text-white"
+                  class="rounded-full bg-cyan-500 px-2 py-0.5 text-xs text-white"
                 >
                   {{ t('admin.accounts.oauth.keysCount', { count: parsedAccessTokenCount }) }}
                 </span>
@@ -341,7 +341,7 @@
               ></textarea>
               <p
                 v-if="parsedAccessTokenCount > 1"
-                class="mt-1 text-xs text-blue-600 dark:text-blue-400"
+                class="mt-1 text-xs text-cyan-600 dark:text-cyan-400"
               >
                 {{ t('admin.accounts.oauth.batchCreateAccounts', { count: parsedAccessTokenCount }) }}
               </p>
@@ -371,9 +371,9 @@
         <!-- Cookie Auto-Auth Form -->
         <div v-if="inputMethod === 'cookie'" class="space-y-4">
           <div
-            class="rounded-lg border border-blue-300 bg-white/80 p-4 dark:border-blue-600 dark:bg-gray-800/80"
+            class="rounded-lg border border-cyan-300 bg-white/80 p-4 dark:border-cyan-600 dark:bg-gray-800/80"
           >
-            <p class="mb-3 text-sm text-blue-700 dark:text-blue-300">
+            <p class="mb-3 text-sm text-cyan-700 dark:text-cyan-300">
               {{ t('admin.accounts.oauth.cookieAutoAuthDesc') }}
             </p>
 
@@ -382,18 +382,18 @@
               <label
                 class="mb-2 flex items-center gap-2 text-sm font-semibold text-gray-700 dark:text-gray-300"
               >
-                <Icon name="key" size="sm" class="text-blue-500" />
+                <Icon name="key" size="sm" class="text-cyan-500" />
                 {{ t('admin.accounts.oauth.sessionKey') }}
                 <span
                   v-if="parsedKeyCount > 1 && allowMultiple"
-                  class="rounded-full bg-blue-500 px-2 py-0.5 text-xs text-white"
+                  class="rounded-full bg-cyan-500 px-2 py-0.5 text-xs text-white"
                 >
                   {{ t('admin.accounts.oauth.keysCount', { count: parsedKeyCount }) }}
                 </span>
                 <button
                   v-if="showHelp"
                   type="button"
-                  class="text-blue-500 hover:text-blue-600"
+                  class="text-cyan-500 hover:text-cyan-600"
                   @click="showHelpDialog = !showHelpDialog"
                 >
                   <svg
@@ -423,7 +423,7 @@
               ></textarea>
               <p
                 v-if="parsedKeyCount > 1 && allowMultiple"
-                class="mt-1 text-xs text-blue-600 dark:text-blue-400"
+                class="mt-1 text-xs text-cyan-600 dark:text-cyan-400"
               >
                 {{ t('admin.accounts.oauth.batchCreateAccounts', { count: parsedKeyCount }) }}
               </p>
@@ -502,22 +502,22 @@
 
         <!-- Manual Authorization Flow -->
         <div v-if="inputMethod === 'manual'" class="space-y-4">
-          <p class="mb-4 text-sm text-blue-800 dark:text-blue-300">
+          <p class="mb-4 text-sm text-cyan-800 dark:text-cyan-300">
             {{ oauthFollowSteps }}
           </p>
 
           <!-- Step 1: Generate Auth URL -->
           <div
-            class="rounded-lg border border-blue-300 bg-white/80 p-4 dark:border-blue-600 dark:bg-gray-800/80"
+            class="rounded-lg border border-cyan-300 bg-white/80 p-4 dark:border-cyan-600 dark:bg-gray-800/80"
           >
             <div class="flex items-start gap-3">
               <div
-                class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-600 text-xs font-bold text-white"
+                class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-cyan-600 text-xs font-bold text-white"
               >
                 1
               </div>
               <div class="flex-1">
-                <p class="mb-2 font-medium text-blue-900 dark:text-blue-200">
+                <p class="mb-2 font-medium text-cyan-900 dark:text-cyan-200">
                   {{ oauthStep1GenerateUrl }}
                 </p>
                 <div v-if="showProjectId && platform === 'gemini'" class="mb-3">
@@ -527,7 +527,7 @@
                       href="https://console.cloud.google.com/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="inline-flex items-center gap-1 text-xs font-normal text-blue-500 hover:text-blue-600 dark:text-blue-400"
+                      class="inline-flex items-center gap-1 text-xs font-normal text-cyan-500 hover:text-cyan-600 dark:text-cyan-400"
                     >
                       <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
@@ -614,7 +614,7 @@
                   </div>
                   <button
                     type="button"
-                    class="text-xs text-blue-600 hover:text-blue-700 dark:text-blue-400"
+                    class="text-xs text-cyan-600 hover:text-cyan-700 dark:text-cyan-400"
                     @click="handleRegenerate"
                   >
                     <Icon name="refresh" size="xs" class="mr-1 inline" />
@@ -627,19 +627,19 @@
 
           <!-- Step 2: Open URL and authorize -->
           <div
-            class="rounded-lg border border-blue-300 bg-white/80 p-4 dark:border-blue-600 dark:bg-gray-800/80"
+            class="rounded-lg border border-cyan-300 bg-white/80 p-4 dark:border-cyan-600 dark:bg-gray-800/80"
           >
             <div class="flex items-start gap-3">
               <div
-                class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-600 text-xs font-bold text-white"
+                class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-cyan-600 text-xs font-bold text-white"
               >
                 2
               </div>
               <div class="flex-1">
-                <p class="mb-2 font-medium text-blue-900 dark:text-blue-200">
+                <p class="mb-2 font-medium text-cyan-900 dark:text-cyan-200">
                   {{ oauthStep2OpenUrl }}
                 </p>
-                <p class="text-sm text-blue-700 dark:text-blue-300">
+                <p class="text-sm text-cyan-700 dark:text-cyan-300">
                   {{ oauthOpenUrlDesc }}
                 </p>
                 <!-- OpenAI Important Notice -->
@@ -668,25 +668,25 @@
 
           <!-- Step 3: Enter authorization code -->
           <div
-            class="rounded-lg border border-blue-300 bg-white/80 p-4 dark:border-blue-600 dark:bg-gray-800/80"
+            class="rounded-lg border border-cyan-300 bg-white/80 p-4 dark:border-cyan-600 dark:bg-gray-800/80"
           >
             <div class="flex items-start gap-3">
               <div
-                class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-600 text-xs font-bold text-white"
+                class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-cyan-600 text-xs font-bold text-white"
               >
                 3
               </div>
               <div class="flex-1">
-                <p class="mb-2 font-medium text-blue-900 dark:text-blue-200">
+                <p class="mb-2 font-medium text-cyan-900 dark:text-cyan-200">
                   {{ oauthStep3EnterCode }}
                 </p>
                 <p
-                  class="mb-3 text-sm text-blue-700 dark:text-blue-300"
+                  class="mb-3 text-sm text-cyan-700 dark:text-cyan-300"
                   v-text="oauthAuthCodeDesc"
                 ></p>
                 <div>
                   <label class="input-label">
-                    <Icon name="key" size="sm" class="mr-1 inline text-blue-500" />
+                    <Icon name="key" size="sm" class="mr-1 inline text-cyan-500" />
                     {{ oauthAuthCode }}
                   </label>
                   <textarea

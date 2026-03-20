@@ -505,6 +505,8 @@ export interface CreateGroupRequest {
   supported_model_scopes?: string[]
   // 从指定分组复制账号
   copy_accounts_from_group_ids?: number[]
+  // 模型路由配置
+  model_routing?: Record<string, number[]> | null
 }
 
 export interface UpdateGroupRequest {
@@ -533,6 +535,7 @@ export interface UpdateGroupRequest {
   simulate_claude_max_enabled?: boolean
   supported_model_scopes?: string[]
   copy_accounts_from_group_ids?: number[]
+  model_routing?: Record<string, number[]> | null
 }
 
 // ==================== Account & Proxy Types ====================

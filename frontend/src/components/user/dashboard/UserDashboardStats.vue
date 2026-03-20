@@ -20,8 +20,8 @@
     <!-- API Keys -->
     <div class="card p-4">
       <div class="flex items-center gap-3">
-        <div class="rounded-lg bg-blue-100 p-2 dark:bg-blue-900/30">
-          <Icon name="key" size="md" class="text-blue-600 dark:text-blue-400" :stroke-width="2" />
+        <div class="rounded-lg bg-cyan-100 p-2 dark:bg-cyan-900/30">
+          <Icon name="key" size="md" class="text-cyan-600 dark:text-cyan-400" :stroke-width="2" />
         </div>
         <div>
           <p class="text-xs font-medium text-gray-500 dark:text-gray-400">{{ t('dashboard.apiKeys') }}</p>

@@ -229,8 +229,8 @@
               />
             </div>
             <!-- 邀请码类型：显示提示信息 -->
-            <div v-if="generateForm.type === 'invitation'" class="rounded-lg bg-blue-50 p-3 dark:bg-blue-900/20">
-              <p class="text-sm text-blue-700 dark:text-blue-300">
+            <div v-if="generateForm.type === 'invitation'" class="rounded-lg bg-cyan-50 p-3 dark:bg-cyan-900/20">
+              <p class="text-sm text-cyan-700 dark:text-cyan-300">
                 {{ t('admin.redeem.invitationHint') }}
               </p>
             </div>

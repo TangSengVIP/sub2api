@@ -49,6 +49,9 @@ export default defineConfig(({ mode }) => {
       }),
       injectPublicSettings(backendUrl)
     ],
+    optimizeDeps: {
+      include: ['chart.js', 'vue-chartjs']
+    },
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),

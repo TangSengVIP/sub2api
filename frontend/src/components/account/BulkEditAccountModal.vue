@@ -7,8 +7,8 @@
   >
     <form id="bulk-edit-account-form" class="space-y-5" @submit.prevent="handleSubmit">
       <!-- Info -->
-      <div class="rounded-lg bg-blue-50 p-4 dark:bg-blue-900/20">
-        <p class="text-sm text-blue-700 dark:text-blue-400">
+      <div class="rounded-lg bg-cyan-50 p-4 dark:bg-cyan-900/20">
+        <p class="text-sm text-cyan-700 dark:text-cyan-400">
           <svg class="mr-1.5 inline h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path
               stroke-linecap="round"
@@ -145,8 +145,8 @@
 
           <!-- Whitelist Mode -->
           <div v-if="modelRestrictionMode === 'whitelist'">
-            <div class="mb-3 rounded-lg bg-blue-50 p-3 dark:bg-blue-900/20">
-              <p class="text-xs text-blue-700 dark:text-blue-400">
+            <div class="mb-3 rounded-lg bg-cyan-50 p-3 dark:bg-cyan-900/20">
+              <p class="text-xs text-cyan-700 dark:text-cyan-400">
                 <svg
                   class="mr-1 inline h-4 w-4"
                   fill="none"

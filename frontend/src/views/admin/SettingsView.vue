@@ -1384,7 +1384,7 @@
                 href="https://raw.githubusercontent.com/Wei-Shaw/sub2api/main/docs/ADMIN_PAYMENT_INTEGRATION_API.md"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-blue-600 hover:underline dark:text-blue-400"
+                class="text-cyan-600 hover:underline dark:text-cyan-400"
                 download="ADMIN_PAYMENT_INTEGRATION_API.md"
               >
                 {{ t('admin.settings.purchase.integrationDoc') }}

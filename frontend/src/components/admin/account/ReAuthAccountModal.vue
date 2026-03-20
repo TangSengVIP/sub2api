@@ -17,7 +17,7 @@
               isOpenAILike
                 ? 'from-green-500 to-green-600'
                 : isGemini
-                  ? 'from-blue-500 to-blue-600'
+                  ? 'from-cyan-500 to-cyan-600'
                   : isAntigravity
                     ? 'from-purple-500 to-purple-600'
                     : 'from-orange-500 to-orange-600'
@@ -87,7 +87,7 @@
               geminiOAuthType === 'google_one'
                 ? 'bg-purple-500 text-white'
                 : geminiOAuthType === 'code_assist'
-                  ? 'bg-blue-500 text-white'
+                  ? 'bg-cyan-500 text-white'
                   : 'bg-amber-500 text-white'
             ]"
           >

@@ -256,7 +256,7 @@ const getIconBg = (item: BalanceHistoryItem) => {
   }
   if (isSubscriptionType(item.type)) return 'bg-purple-100 dark:bg-purple-900/30'
   return item.value >= 0
-    ? 'bg-blue-100 dark:bg-blue-900/30'
+    ? 'bg-cyan-100 dark:bg-cyan-900/30'
     : 'bg-orange-100 dark:bg-orange-900/30'
 }
 
@@ -269,7 +269,7 @@ const getIconColor = (item: BalanceHistoryItem) => {
   }
   if (isSubscriptionType(item.type)) return 'text-purple-600 dark:text-purple-400'
   return item.value >= 0
-    ? 'text-blue-600 dark:text-blue-400'
+    ? 'text-cyan-600 dark:text-cyan-400'
     : 'text-orange-600 dark:text-orange-400'
 }
 
@@ -282,7 +282,7 @@ const getValueColor = (item: BalanceHistoryItem) => {
   }
   if (isSubscriptionType(item.type)) return 'text-purple-600 dark:text-purple-400'
   return item.value >= 0
-    ? 'text-blue-600 dark:text-blue-400'
+    ? 'text-cyan-600 dark:text-cyan-400'
     : 'text-orange-600 dark:text-orange-400'
 }
 

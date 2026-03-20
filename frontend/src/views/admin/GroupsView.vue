@@ -88,7 +88,7 @@
                     ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400'
                     : value === 'antigravity'
                       ? 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400'
-                      : 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400'
+                      : 'bg-cyan-100 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-400'
               ]"
             >
               <PlatformIcon :platform="value" size="xs" />
@@ -1772,7 +1772,7 @@
                         ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400'
                         : group.platform === 'antigravity'
                           ? 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400'
-                          : 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400'
+                          : 'bg-cyan-100 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-400'
                   ]"
                 >
                   {{ t('admin.groups.platforms.' + group.platform) }}
@@ -1838,7 +1838,7 @@ import { useI18n } from 'vue-i18n'
 import { useAppStore } from '@/stores/app'
 import { useOnboardingStore } from '@/stores/onboarding'
 import { adminAPI } from '@/api/admin'
-import type { AdminGroup, GroupPlatform, SubscriptionType } from '@/types'
+import type { AdminGroup, CreateGroupRequest, GroupPlatform, SubscriptionType } from '@/types'
 import type { Column } from '@/components/common/types'
 import AppLayout from '@/components/layout/AppLayout.vue'
 import TablePageLayout from '@/components/layout/TablePageLayout.vue'
@@ -2485,19 +2485,18 @@ const handleCreateGroup = async () => {
   try {
     // 构建请求数据，包含模型路由配置
     const { sora_storage_quota_gb: createQuotaGb, ...createRest } = createForm
-    const requestData = {
+    const requestData: CreateGroupRequest = {
       ...createRest,
+      name: createForm.name.trim(),
       daily_limit_usd: normalizeOptionalLimit(createForm.daily_limit_usd as number | string | null),
       weekly_limit_usd: normalizeOptionalLimit(createForm.weekly_limit_usd as number | string | null),
       monthly_limit_usd: normalizeOptionalLimit(createForm.monthly_limit_usd as number | string | null),
       sora_storage_quota_bytes: createQuotaGb ? Math.round(createQuotaGb * 1024 * 1024 * 1024) : 0,
-      model_routing: convertRoutingRulesToApiFormat(createModelRoutingRules.value)
+      model_routing: convertRoutingRulesToApiFormat(createModelRoutingRules.value),
+      copy_accounts_from_group_ids: (createForm.copy_accounts_from_group_ids || []).map((id) =>
+        typeof id === 'number' ? id : Number(id)
+      ).filter((id) => Number.isFinite(id) && id > 0)
     }
-    // v-model.number 清空输入框时产生 ""，转为 null 让后端设为无限制
-    const emptyToNull = (v: any) => v === '' ? null : v
-    requestData.daily_limit_usd = emptyToNull(requestData.daily_limit_usd)
-    requestData.weekly_limit_usd = emptyToNull(requestData.weekly_limit_usd)
-    requestData.monthly_limit_usd = emptyToNull(requestData.monthly_limit_usd)
     await adminAPI.groups.create(requestData)
     appStore.showSuccess(t('admin.groups.groupCreated'))
     closeCreateModal()
@@ -2507,7 +2506,12 @@ const handleCreateGroup = async () => {
       onboardingStore.nextStep(500)
     }
   } catch (error: any) {
-    appStore.showError(error.response?.data?.detail || t('admin.groups.failedToCreate'))
+    const msg =
+      error.response?.data?.message ||
+      error.response?.data?.detail ||
+      error.message ||
+      t('admin.groups.failedToCreate')
+    appStore.showError(msg)
     console.error('Error creating group:', error)
     // Don't advance tour on error
   } finally {
