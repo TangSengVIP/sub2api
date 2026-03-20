@@ -503,14 +503,6 @@
           >
             {{ t('home.docs') }}
           </a>
-          <a
-            :href="githubUrl"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-sm text-white/40 transition-colors hover:text-white/70"
-          >
-            GitHub
-          </a>
         </div>
       </div>
     </footer>

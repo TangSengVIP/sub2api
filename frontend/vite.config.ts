@@ -113,6 +113,8 @@ export default defineConfig(({ mode }) => {
     server: {
       host: '0.0.0.0',
       port: devPort,
+      // 确保 SPA 路由（如 /dashboard）直接请求时返回 index.html，避免 502
+      appType: 'spa',
       proxy: {
         '/api': {
           target: backendUrl,
