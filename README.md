@@ -188,27 +188,41 @@ curl -sSL https://raw.githubusercontent.com/TangSengVIP/sub2api/dev/deploy/insta
 
 使用 Docker Compose 部署，包含 PostgreSQL 和 Redis 容器。
 
-#### 前置条件
+#### 重要提示：必须从源码构建镜像
 
-- Docker 20.10+
-- Docker Compose v2+
-
-#### 快速开始（一键部署）
-
-使用自动化部署脚本快速搭建：
+TangSengVIP 没有发布独立 Docker 镜像，**必须从源码构建**：
 
 ```bash
-# 创建部署目录
-mkdir -p sub2api-deploy && cd sub2api-deploy
+# 克隆源码并构建镜像（需要 3-5 分钟）
+git clone https://github.com/TangSengVIP/sub2api.git
+cd sub2api
+docker build -t sub2api:tangseng -f Dockerfile .
+```
 
-# 下载并运行部署准备脚本
-curl -sSL https://raw.githubusercontent.com/TangSengVIP/sub2api/dev/deploy/docker-deploy.sh | bash
+构建完成后，编辑 `deploy/docker-compose.yml`，将：
 
-# 启动服务
-docker compose up -d
+```yaml
+image: weishaw/sub2api:latest
+```
 
-# 查看日志
-docker compose logs -f sub2api
+改为：
+
+```yaml
+image: sub2api:tangseng
+```
+
+#### 快速开始（自动化部署）
+
+```bash
+cd deploy
+
+# 方式 A：使用部署准备脚本（推荐）
+curl -sSL https://raw.githubusercontent.com/TangSengVIP/sub2api/dev/deploy/docker-deploy.sh -o docker-deploy.sh
+chmod +x docker-deploy.sh
+./docker-deploy.sh
+
+# 启动服务（注意：构建镜像后执行）
+docker compose -f docker-compose.local.yml up -d
 ```
 
 **脚本功能：**
@@ -218,19 +232,44 @@ docker compose logs -f sub2api
 - 创建数据目录（使用本地目录，便于备份和迁移）
 - 显示生成的凭证供你记录
 
+#### 升级魔改版
+
+```bash
+# 进入源码目录
+cd /path/to/sub2api
+
+# 拉取最新代码并重新构建镜像
+git checkout dev && git pull
+docker build -t sub2api:tangseng -f Dockerfile .
+
+# 重启服务
+cd deploy
+docker compose -f docker-compose.local.yml up -d --force-recreate sub2api
+```
+
 #### 手动部署
 
 如果你希望手动配置：
 
 ```bash
-# 1. 克隆仓库
+# 1. 克隆源码
 git clone https://github.com/TangSengVIP/sub2api.git
-cd sub2api/deploy
+cd sub2api
 
-# 2. 复制环境配置文件
+# 2. 从源码构建 Docker 镜像
+docker build -t sub2api:tangseng -f Dockerfile .
+```
+
+**注意**：必须先构建镜像，因为 TangSengVIP 没有发布独立 Docker 镜像。
+
+```bash
+# 3. 进入 deploy 目录
+cd deploy
+
+# 4. 复制环境配置文件
 cp .env.example .env
 
-# 3. 编辑配置（生成安全密码）
+# 5. 编辑配置（生成安全密码）
 nano .env
 ```
 
@@ -304,10 +343,15 @@ docker compose -f docker-compose.local.yml logs sub2api | grep "admin password"
 
 #### 升级
 
+由于 TangSengVIP 没有发布 Docker 镜像，需从源码重新构建：
+
 ```bash
-# 拉取最新镜像并重建容器
-docker compose -f docker-compose.local.yml pull
-docker compose -f docker-compose.local.yml up -d
+cd /path/to/sub2api
+git checkout dev && git pull
+docker build -t sub2api:tangseng -f Dockerfile .
+
+cd deploy
+docker compose -f docker-compose.local.yml up -d --force-recreate sub2api
 ```
 
 #### 轻松迁移（本地目录版）
